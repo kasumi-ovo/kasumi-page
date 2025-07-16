@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import logo from "@/assets/logo.jpg";
+import logo from "@/assets/ksm-avatar/ksm_90x90.jpg";
 const navs = [
     {
         title: "Home",
@@ -20,13 +20,7 @@ const navs = [
 <header>
     <div class="header-content">
         <a href="/">
-            <Image
-                src={logo}
-                alt="ksm"
-                height={48}
-                quality="max"
-                class="logo"
-            />
+            <Image quality="max" src={logo} alt="ksm" class="logo" loading="eager" />
         </a>
         <nav class="top-nav">
             {navs.map(({ title, href }) => <a href={href}>{title}</a>)}
@@ -43,7 +37,7 @@ const navs = [
         @apply w-full max-w-3xl mx-auto flex justify-between items-center h-(--height-header);
     }
     .logo {
-        @apply rounded-xl shadow-md shadow-gray-400;
+        @apply rounded-xl shadow-md shadow-gray-400 w-[48px] h-[48px];
     }
     .top-nav {
         @apply flex gap-4;

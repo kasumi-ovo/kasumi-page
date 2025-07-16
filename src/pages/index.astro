@@ -1,8 +1,84 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import ksmAvatar from "@/assets/ksm-avatar/ksm_480x480.jpg";
+import SpringButton from "@/components/SpringButton";
+
+const foreignLinks = [
+	{
+		name: "github",
+		href: "/",
+		icon: "icon-[ri--github-line]",
+		bgColor: "bg-black",
+	},
+	{
+		name: "bilibili",
+		href: "/",
+		icon: "icon-[ri--bilibili-fill]",
+		bgColor: "bg-blue-400",
+	},
+] as const;
 ---
 
 <BaseLayout>
-	<div class=" text-xl">Sphinx of black quartz, judge my vow.</div>
-	<div class="text-xl">Sphinx of black quartz, judge my vow.</div>
+	<section class="banner">
+		<div class="flex items-center justify-between w-full h-fit mt-[16vh]">
+			<div class="left-text">
+				<div class="welcome-title">
+					<p>Hi~</p>
+					<p>Here's Kasumi</p>
+				</div>
+				<div class="welcome-intro">
+					<p>I'm a front-end developer dream to be a Guitar Hero..</p>
+					<p>Welcome to my Page⭐⭐</p>
+				</div>
+
+				<div class="flex gap-3 mt-4">
+					{
+						foreignLinks.map(({ href, icon, name, bgColor }) => (
+							<SpringButton
+								ariaLabel={name}
+								bgColor={bgColor}
+								client:visible
+							>
+								<a
+									href={href}
+									class="text-2xl text-white flex justify-center items-center"
+									aria-label={name}
+								>
+									<span class:list={[icon]} />
+								</a>
+							</SpringButton>
+						))
+					}
+				</div>
+			</div>
+			<Image
+				src={ksmAvatar}
+				alt="ksm"
+				loading="eager"
+				quality="max"
+				class="right-image"
+			/>
+		</div>
+	</section>
 </BaseLayout>
+
+<style>
+	@reference "@/styles/global.css";
+	.banner {
+		@apply flex  justify-between  h-[calc(100vh-var(--height-header))] w-full;
+	}
+	.welcome-title {
+		@apply font-black text-5xl;
+	}
+	.welcome-intro {
+		@apply text-sm mt-1;
+	}
+	.left-text {
+		@apply leading-5;
+	}
+	.right-image {
+		@apply h-58 w-58 rounded-full;
+	}
+</style>
