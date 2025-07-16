@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+import logo from "@/assets/logo.jpg";
+const navs = [
+    {
+        title: "Home",
+        href: "/",
+    },
+    {
+        title: "Posts",
+        href: "/posts",
+    },
+    {
+        title: "About",
+        href: "/about",
+    },
+];
+---
+
+<header>
+    <div class="header-content">
+        <a href="/">
+            <Image
+                src={logo}
+                alt="ksm"
+                height={48}
+                quality="max"
+                class="logo"
+            />
+        </a>
+        <nav class="top-nav">
+            {navs.map(({ title, href }) => <a href={href}>{title}</a>)}
+        </nav>
+    </div>
+</header>
+
+<style>
+    @reference "@/styles/global.css";
+    header {
+        @apply w-full fixed top-0 left-0 bg-white;
+    }
+    .header-content {
+        @apply w-full max-w-3xl mx-auto flex justify-between items-center h-(--height-header);
+    }
+    .logo {
+        @apply rounded-xl shadow-md shadow-gray-400;
+    }
+    .top-nav {
+        @apply flex gap-4;
+    }
+</style>

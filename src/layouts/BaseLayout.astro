@@ -1,25 +1,51 @@
 ---
-import "@/styles/global.css"
+import Header from "@/components/Header.astro";
+import "@/styles/global.css";
 ---
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+		<link
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			href="/public/fonts/poppins-latin-400-normal.woff2"
+			crossorigin="anonymous"
+		/>
 		<meta name="generator" content={Astro.generator} />
 		<title>夏霞</title>
+		<style></style>
 	</head>
 	<body>
-		<slot />
+		<Header />
+		<div class="container">
+			<main>
+				<slot />
+			</main>
+			<footer>&copy; All Rights reserved by Kasumi-orz</footer>
+		</div>
 	</body>
 </html>
 
 <style>
+	@reference "@/styles/global.css";
 	html,
 	body {
 		margin: 0;
 		width: 100%;
 		height: 100%;
+	}
+	body {
+		@apply font-poppins pt-(--height-header);
+	}
+	.container {
+		@apply max-w-3xl w-full mx-auto flex flex-col;
+	}
+	main {
+		@apply min-h-[calc(100vh-var(--height-header))];
 	}
 </style>

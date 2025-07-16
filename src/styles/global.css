@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+
+:root {
+    --height-header: 90px;
+}
+
+@theme {
+    --font-poppins: 'Poppins', sans-serif;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("/public/fonts/poppins-latin-400-normal.woff2") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
