@@ -1,5 +1,5 @@
 @reference "@/styles/global.css";
 
 .button-container {
-    @apply cursor-pointer rounded-xl flex items-center justify-center p-1;
+    @apply cursor-pointer rounded-xl min-w-8 min-h-8;
 }
