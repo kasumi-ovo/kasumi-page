@@ -1,0 +1,57 @@
+---
+import SpringEffect from "./SpringEffect";
+---
+
+<theme-toggle>
+    <SpringEffect client:visible>
+        <button
+            class="h-[24px] w-[24px] flex items-center justify-center hover:text-(--color-theme-toggle) cursor-pointer transition-colors duration-300"
+        >
+            <span class="icon-[ri--moon-fill] dark:icon-[ri--sun-fill]"></span>
+        </button>
+    </SpringEffect>
+</theme-toggle>
+<script>
+    class ThemeToggle extends HTMLElement {
+        constructor() {
+            super();
+            const btn = this.querySelector("button")!;
+            btn.addEventListener("click", async (e: MouseEvent) => {
+                const isDark =
+                    document.documentElement.classList.contains("dark");
+
+                const transition = document.startViewTransition(async () => {
+                    if (!isDark) {
+                        document.documentElement.classList.add("dark");
+                        localStorage.setItem("theme", "dark");
+                    } else {
+                        document.documentElement.classList.remove("dark");
+                        localStorage.setItem("theme", "light");
+                    }
+                });
+                transition.ready.then(() => {
+                    const { clientX, clientY } = e;
+                    const radius = Math.hypot(
+                        Math.max(clientX, innerWidth - clientX),
+                        Math.max(clientY, innerHeight - clientY),
+                    );
+                    const clipPath = [
+                        `circle(0px at ${clientX}px ${clientY}px)`,
+                        `circle(${radius}px at ${clientX}px ${clientY}px)`,
+                    ];
+                    document.documentElement.animate(
+                        { clipPath: !isDark ? clipPath.reverse() : clipPath },
+                        {
+                            duration: 300,
+                            pseudoElement: !isDark
+                                ? "::view-transition-old(root)"
+                                : "::view-transition-new(root)",
+                        },
+                    );
+                });
+            });
+        }
+    }
+
+    customElements.define("theme-toggle", ThemeToggle);
+</script>

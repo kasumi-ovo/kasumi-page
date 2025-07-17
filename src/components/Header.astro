@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import logo from "@/assets/ksm-avatar/ksm_90x90.jpg";
+import ThemeToggle from "./ThemeToggle.astro";
 const navs = [
     {
         title: "Home",
@@ -36,6 +37,7 @@ const navs = [
                     </a>
                 ))
             }
+            <ThemeToggle />
         </nav>
     </div>
 </header>
@@ -43,13 +45,13 @@ const navs = [
 <style>
     @reference "@/styles/global.css";
     header {
-        @apply w-full fixed top-0 left-0  z-10 border-b border-muted backdrop-blur-lg;
+        @apply w-full fixed top-0 left-0  z-10  backdrop-blur-lg;
     }
     .header-content {
-        @apply w-full max-w-3xl mx-auto flex justify-between items-center h-(--height-header);
+        @apply w-full max-w-3xl mx-auto flex justify-between items-center h-(--height-header) border-b border-muted;
     }
     .logo {
-        @apply rounded-xl shadow-md shadow-gray-400 w-[48px] h-[48px];
+        @apply rounded-xl w-[48px] h-[48px];
     }
     .top-nav {
         @apply flex gap-4 font-bold;

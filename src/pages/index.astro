@@ -2,20 +2,20 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import ksmAvatar from "@/assets/ksm-avatar/ksm_435x435.jpg";
-import SpringButton from "@/components/SpringButton";
+import SpringEffect from "@/components/SpringEffect";
 
 const foreignLinks = [
 	{
 		name: "github",
-		href: "/",
+		href: "https://github.com/kasumi-ovo",
 		icon: "icon-[ri--github-line]",
-		bgColor: "bg-black",
+		className: "bg-black text-white dark:text-black dark:bg-white",
 	},
 	{
 		name: "bilibili",
-		href: "/",
+		href: "https://space.bilibili.com/12877881",
 		icon: "icon-[ri--bilibili-fill]",
-		bgColor: "bg-blue-400",
+		className: "bg-blue-400 text-white",
 	},
 ] as const;
 ---
@@ -26,7 +26,11 @@ const foreignLinks = [
 			<div class="left-text">
 				<div class="welcome-title">
 					<p>Hi~</p>
-					<p>Here's <span class="font-dancing-script text-red-600">Kasumi</span></p>
+					<p>
+						Here's <span class="font-dancing-script text-red-600"
+							>Kasumi</span
+						>
+					</p>
 				</div>
 				<div class="welcome-intro">
 					<p>I'm a front-end developer dream to be a Guitar Hero..</p>
@@ -35,20 +39,24 @@ const foreignLinks = [
 
 				<div class="flex gap-3 mt-4">
 					{
-						foreignLinks.map(({ href, icon, name, bgColor }) => (
-							<SpringButton
-								ariaLabel={name}
-								bgColor={bgColor}
-								client:visible
-							>
+						foreignLinks.map(({ className, href, icon, name }) => (
+							<SpringEffect client:visible>
 								<a
 									href={href}
-									class="text-2xl text-white w-full h-full flex justify-center items-center"
+									target="_blank"
+									class={`foreign-link-btn ${className}`}
 									aria-label={name}
 								>
-									<span class:list={[icon]} />
+									<span class={icon} />
 								</a>
-							</SpringButton>
+							</SpringEffect>
+							// <SpringButton
+							// 	ariaLabel={name}
+							// 	bgColor={bgColor}
+							// 	client:visible
+							// >
+
+							// </SpringButton>
 						))
 					}
 				</div>
@@ -74,6 +82,9 @@ const foreignLinks = [
 	}
 	.welcome-intro {
 		@apply text-sm mt-1;
+	}
+	.foreign-link-btn {
+		@apply text-2xl w-full h-full flex justify-center items-center p-1 rounded-lg;
 	}
 	.left-text {
 		@apply leading-5;

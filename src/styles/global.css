@@ -1,10 +1,29 @@
 @import "tailwindcss";
 @plugin "@iconify/tailwind4";
+@custom-variant dark (&:where(.dark, .dark *));
+
+::view-transition-new(root),
+::view-transition-old(root) {
+    animation: none;
+}
+
+.dark::view-transition-old(root) {
+    z-index: 9999;
+}
 
 :root {
     --height-header: 90px;
     --theme-color: hsl(261, 100%, 66%);
     --color-muted: hsl(216 12% 84% / 0.6);
+    --color-theme-toggle: var(--color-theme);
+    --color-bg: hsl(0, 0%, 100%);
+}
+
+.dark {
+    color-scheme: dark;
+    --color-theme-toggle: hsl(47, 100%, 59%);
+    --color-bg: hsla(260, 71%, 4%, 0.858);
+    --color-muted: hsl(216 12% 25% / 0.6);
 }
 
 @theme {
