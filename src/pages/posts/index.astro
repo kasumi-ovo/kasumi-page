@@ -1,5 +1,130 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+const tags = [
+    "React",
+    "Vue",
+    "Nextjs",
+    "Nuxtjs",
+    "ReactNative",
+    "Flutter",
+    "Nestjs",
+    "Spring Boot",
+];
 ---
 
-<BaseLayout> <div>posts</div></BaseLayout>
+<BaseLayout>
+    <section class="mt-10">
+        <span class="text-xl font-bold">Tags:</span>
+        <div class="flex flex-wrap gap-3 mt-4">
+            {
+                tags.map((tag) => (
+                    <a href="/posts" class="hover:underline hover:text-theme">
+                        #{tag}
+                    </a>
+                ))
+            }
+        </div>
+    </section>
+    <section class="mt-4">
+        <div class="flex">
+            <input class="search-input" />
+        </div>
+    </section>
+    <section class="mt-8">
+        <ul class="flex flex-col gap-6">
+            <li>
+                <article>
+                    <span class="font-bold text-lg">React Tutorial</span>
+                    <p class="text-sm">This is the description of this article...</p>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="icon-[ri--calendar-schedule-line]"></span>
+                        <span class="text-sm">Januray, 14, 2025</span>
+                    </div>
+                </article>
+            </li>
+            <li>
+                <article>
+                    <span class="font-bold text-lg">React Tutorial</span>
+                    <p class="text-sm">This is the description of this article...</p>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="icon-[ri--calendar-schedule-line]"></span>
+                        <span class="text-sm">Januray, 14, 2025</span>
+                    </div>
+                </article>
+            </li>
+             <li>
+                <article>
+                    <span class="font-bold text-lg">React Tutorial</span>
+                    <p class="text-sm">This is the description of this article...</p>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="icon-[ri--calendar-schedule-line]"></span>
+                        <span class="text-sm">Januray, 14, 2025</span>
+                    </div>
+                </article>
+            </li>
+              <li>
+                <article>
+                    <span class="font-bold text-lg">React Tutorial</span>
+                    <p class="text-sm">This is the description of this article...</p>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="icon-[ri--calendar-schedule-line]"></span>
+                        <span class="text-sm">Januray, 14, 2025</span>
+                    </div>
+                </article>
+            </li>
+              <li>
+                <article>
+                    <span class="font-bold text-lg">React Tutorial</span>
+                    <p class="text-sm">This is the description of this article...</p>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="icon-[ri--calendar-schedule-line]"></span>
+                        <span class="text-sm">Januray, 14, 2025</span>
+                    </div>
+                </article>
+            </li>
+              <li>
+                <article>
+                    <span class="font-bold text-lg">React Tutorial</span>
+                    <p class="text-sm">This is the description of this article...</p>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="icon-[ri--calendar-schedule-line]"></span>
+                        <span class="text-sm">Januray, 14, 2025</span>
+                    </div>
+                </article>
+            </li>
+              <li>
+                <article>
+                    <span class="font-bold text-lg">React Tutorial</span>
+                    <p class="text-sm">This is the description of this article...</p>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="icon-[ri--calendar-schedule-line]"></span>
+                        <span class="text-sm">Januray, 14, 2025</span>
+                    </div>
+                </article>
+            </li>
+              <li>
+                <article>
+                    <span class="font-bold text-lg">React Tutorial</span>
+                    <p class="text-sm">This is the description of this article...</p>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="icon-[ri--calendar-schedule-line]"></span>
+                        <span class="text-sm">Januray, 14, 2025</span>
+                    </div>
+                </article>
+            </li>
+        </ul>
+    </section>
+    <div class="flex justify-end gap-3 mt-4">
+        <a href="#">Prev</a>
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">Next</a>
+    </div>
+</BaseLayout>
+<style>
+    @reference "@/styles/global.css";
+    .search-input {
+        @apply outline-0 border border-gray-400 rounded-md h-8 w-60 px-2 py-1 text-sm focus:shadow-md shadow-theme transition-all duration-150;
+    }
+</style>
