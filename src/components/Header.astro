@@ -20,10 +20,22 @@ const navs = [
 <header>
     <div class="header-content">
         <a href="/">
-            <Image quality="max" src={logo} alt="ksm" class="logo" loading="eager" />
+            <Image
+                quality="max"
+                src={logo}
+                alt="ksm"
+                class="logo"
+                loading="eager"
+            />
         </a>
         <nav class="top-nav">
-            {navs.map(({ title, href }) => <a href={href} class="hover:text-theme">{title}</a>)}
+            {
+                navs.map(({ title, href }) => (
+                    <a href={href} class="hover:text-theme">
+                        {title}
+                    </a>
+                ))
+            }
         </nav>
     </div>
 </header>
@@ -31,7 +43,7 @@ const navs = [
 <style>
     @reference "@/styles/global.css";
     header {
-        @apply w-full fixed top-0 left-0 bg-white z-10;
+        @apply w-full fixed top-0 left-0  z-10 border-b border-muted backdrop-blur-lg;
     }
     .header-content {
         @apply w-full max-w-3xl mx-auto flex justify-between items-center h-(--height-header);

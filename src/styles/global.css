@@ -4,12 +4,14 @@
 :root {
     --height-header: 90px;
     --theme-color: hsl(261, 100%, 66%);
+    --color-muted: hsl(216 12% 84% / 0.6);
 }
 
 @theme {
     --font-poppins: 'Poppins', sans-serif;
     --font-dancing-script: 'Dancing Script', sans-serif;
     --color-theme: var(--theme-color);
+    --color-muted: var(--color-muted);
 }
 
 @font-face {

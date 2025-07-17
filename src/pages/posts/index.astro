@@ -17,7 +17,8 @@ if (tag) {
 if (search) {
     tarPosts = tarPosts.filter((post) => {
         return (
-            post.data.title.includes(search) || post.data.desc.includes(search)
+            post.data.title.toLowerCase().includes(search.toLowerCase()) ||
+            post.data.desc.toLocaleLowerCase().includes(search)
         );
     });
 }
@@ -28,7 +29,7 @@ const count = tarPosts.length;
 <BaseLayout>
     <section class="mt-10 flex items-center gap-3">
         <span class="text-[16px] font-bold">Tags:</span>
-        <div class="flex flex-wrap gap-3 text-[16px] tags">
+        <div class="flex flex-wrap gap-3 text-[14px] tags">
             <a href={`/posts`} class="hover:underline hover:text-theme">
                 All
             </a>
@@ -46,7 +47,7 @@ const count = tarPosts.length;
             <input class="search-input" placeholder="search by keywords" />
         </div>
     </section>
-    <section class="mt-8">
+    <section class="mt-4">
         <span class="font-bold text-[13px]">Total: {count}</span>
     </section>
     <section class="mt-4">
