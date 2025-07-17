@@ -82,9 +82,13 @@ ksm-code-block {
     @apply mb-2;
 }
 
+.markdown-content blockquote p:last-of-type {
+    @apply mb-0;
+}
+
 .markdown-content blockquote {
     background-color: hsla(276, 100%, 83%, 0.5);
-    @apply p-3 h-fit relative;
+    @apply p-3 h-fit relative mb-4;
 }
 
 .markdown-content blockquote::before {

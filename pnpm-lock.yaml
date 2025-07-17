@@ -48,9 +48,15 @@ importers:
         specifier: ^4.1.11
         version: 4.1.11
     devDependencies:
+      '@iconify-json/file-icons':
+        specifier: ^1.2.1
+        version: 1.2.1
       '@iconify-json/ri':
         specifier: ^1.2.5
         version: 1.2.5
+      '@iconify-json/tabler':
+        specifier: ^1.2.19
+        version: 1.2.19
       '@iconify/tailwind4':
         specifier: ^1.0.6
         version: 1.0.6(tailwindcss@4.1.11)
@@ -354,8 +360,14 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@iconify-json/file-icons@1.2.1':
+    resolution: {integrity: sha512-ciDy+wGZpF2QELM5aGVTwsvh6l3puPbdrIy+L9sVAv1tvSHWFZB2UuadfiLODlVtZFUrzuO404NxESwH88MY1Q==}
+
   '@iconify-json/ri@1.2.5':
     resolution: {integrity: sha512-kWGimOXMZrlYusjBKKXYOWcKhbOHusFsmrmRGmjS7rH0BpML5A9/fy8KHZqFOwZfC4M6amObQYbh8BqO5cMC3w==}
+
+  '@iconify-json/tabler@1.2.19':
+    resolution: {integrity: sha512-JDeQTQxHD8KE12pAbPVHX1WFVOPq8D0XfRb/LwYHwGwYE0HP9OIjJ//TKxS1Gt++RirYu6Xsx+Jm5LA5KbykoA==}
 
   '@iconify/tailwind4@1.0.6':
     resolution: {integrity: sha512-43ZXe+bC7CuE2LCgROdqbQeFYJi/J7L/k1UpSy8KDQlWVsWxPzLSWbWhlJx4uRYLOh1NRyw02YlDOgzBOFNd+A==}
@@ -2767,7 +2779,15 @@ snapshots:
   '@esbuild/win32-x64@0.25.6':
     optional: true
 
+  '@iconify-json/file-icons@1.2.1':
+    dependencies:
+      '@iconify/types': 2.0.0
+
   '@iconify-json/ri@1.2.5':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/tabler@1.2.19':
     dependencies:
       '@iconify/types': 2.0.0
 

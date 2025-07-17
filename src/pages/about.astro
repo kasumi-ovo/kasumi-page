@@ -1,5 +1,10 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Content } from "@/content/about/about.mdx";
 ---
 
-<BaseLayout> <article>about</article></BaseLayout>
+<BaseLayout>
+    <article class="markdown-content">
+        <Content />
+    </article>
+</BaseLayout>
