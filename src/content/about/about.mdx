@@ -1,6 +1,7 @@
 import ksm from "@/assets/about-assets/test.gif";
 import { Image } from "astro:assets";
 import natsuksmMp3 from "@/assets/about-assets/natsukasumi.mp3"
+import kirakira from "@/assets/about-assets/kirakira.mp4";
 import SpringButton from "@/components/SpringButton";
 
 ## whoami
@@ -9,11 +10,9 @@ Hi, 这里是kasumi. 这个名字起源于一首日文歌，叫做夏(natsu)霞(
 
 <audio src={natsuksmMp3} controls class="mb-4 h-[36px]" />
 
-<div class="flex gap-8 mb-4">
-    <img src={ksm.src} alt="ksm" class="w-[150px]" />
-</div>
+<video src={kirakira} autoplay loop muted playsinline class="mb-4 w-[150px]"/>
 
-我是一名普普通通的菜鸟前端开发，该个人页是为了记录学习笔记而建。 目前我所熟悉的技术栈如下：
+我是一名普普通通的菜鸟前端开发，该个人页一方面是为了记录并分享学习笔记，另一方面也是为了宣传自己（虽然说我感觉现在自己确实没什么内容可以宣传的..）。 目前我所熟悉的技术栈如下：
 
 <div class="mb-4 grid grid-cols-4 w-fit gap-4">
     <SpringButton client:visible ariaLabel="vue" bgColor="bg-green-400">
