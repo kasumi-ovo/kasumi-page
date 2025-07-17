@@ -1,0 +1,45 @@
+---
+import MDXComponent from "@/components/MDXComponent.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import formatDate from "@/utils/formatDate";
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+export const getStaticPaths = (async () => {
+    const posts = await getCollection("posts");
+    return posts.map((post) => ({
+        params: { id: post.id },
+        props: { post },
+    }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+---
+
+<BaseLayout>
+    <section class="markdown-content">
+        <h1>{post.data.title}</h1>
+        <div class="flex gap-4">
+            <div class="flex gap-1 items-center">
+                <span class="icon-[ri--calendar-schedule-line] text-[14px]"
+                ></span>
+                <span>{formatDate(post.data.pubDate)}</span>
+            </div>
+            <div>
+                {
+                    post.data.tags.map((tag) => (
+                        <a
+                            href={`/posts?tag=${tag.toLowerCase()}`}
+                            class="text-[12px] hover:text-violet-400"
+                        >
+                            #{tag}
+                        </a>
+                    ))
+                }
+            </div>
+        </div>
+        <p class="mt-2 italic">{post.data.desc}</p>
+    </section>
+    <section class="mt-4">
+        <MDXComponent post={post} />
+    </section>
+</BaseLayout>

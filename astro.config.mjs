@@ -21,6 +21,13 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [react(), mdx()],
+  integrations: [react(), mdx({
+    shikiConfig: {
+      themes: {
+        dark: "dracula",
+        light: "snazzy-light"
+      }
+    }
+  })],
   adapter
 });

@@ -1,0 +1,33 @@
+---
+type Props = {
+    class: string;
+    style: Record<string, string>;
+    tabIndex: string;
+    "data-language": string;
+};
+const props = Astro.props;
+const finalProps = {
+    ...props,
+    class: `w-full p-3 border border-gray-300 rounded-lg ${props.class}`,
+};
+---
+
+<ksm-code-block>
+    <button class="copy absolute top-[15px] right-[15px] cursor-pointer">
+        <span class="icon-[ri--file-copy-fill]"></span>
+    </button>
+    <pre {...finalProps}><slot /></pre>
+</ksm-code-block>
+<script>
+    class KsmCodeBlock extends HTMLElement {
+        connectedCallback() {
+            const copyBtn = this.querySelector<HTMLButtonElement>(".copy");
+            const code = this.querySelector("code")?.innerText!;
+            copyBtn!.addEventListener("click", () => {
+                navigator.clipboard.writeText(code);
+            });
+        }
+    }
+
+    customElements.define("ksm-code-block", KsmCodeBlock);
+</script>

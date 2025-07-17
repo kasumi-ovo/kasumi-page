@@ -1,0 +1,96 @@
+@reference "@/styles/global.css";
+
+/* 字体大小 */
+.markdown-content {
+    @apply text-[14px]
+}
+
+/* 标题 */
+.markdown-content h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    @apply font-bold mb-3;
+}
+
+.markdown-content h1 {
+    @apply text-[28px];
+}
+
+.markdown-content h2 {
+    @apply text-[24px];
+}
+
+.markdown-content h3 {
+    @apply text-[22px];
+}
+
+.markdown-content h4 {
+    @apply text-[20px];
+}
+
+.markdown-content h5 {
+    @apply text-[18px];
+}
+
+.markdown-content h6 {
+    @apply text-[16px];
+}
+
+/* 段落 */
+.markdown-content p {
+    @apply mb-4
+}
+
+/* 代码块 */
+ksm-code-block {
+    @apply relative max-w-xl mb-4 block;
+}
+
+/* .markdown-content .astro-code,
+.markdown-content .astro-code span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+   
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+} */
+
+/* 无序列表 */
+.markdown-content ul {
+    @apply pl-4 mb-4;
+}
+
+.markdown-content ul li {
+    @apply list-disc mb-1;
+}
+
+/* 有序列表 */
+.markdown-content ol {
+    @apply pl-4 mb-4;
+}
+
+.markdown-content ol li {
+    @apply list-decimal mb-1;
+}
+
+/* 引用 */
+.markdown-content blockquote p {
+    @apply mb-2;
+}
+
+.markdown-content blockquote {
+    background-color: hsla(276, 100%, 83%, 0.5);
+    @apply p-3 h-fit relative;
+}
+
+.markdown-content blockquote::before {
+    content: "";
+    width: 5px;
+    height: 100%;
+    background-color: hsl(292deg 100% 83% / 0.5);
+    @apply block h-full absolute left-0 top-0;
+}

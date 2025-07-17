@@ -1,0 +1,29 @@
+---
+import { render, type getCollection } from "astro:content";
+import CodeBlock from "./CodeBlock.astro";
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+
+type Props = {
+    post: Awaited<ReturnType<typeof getCollection<"posts">>>[number];
+};
+
+type MDXContentProps = {
+    components?: {
+        pre: AstroComponentFactory;
+    };
+};
+type MDXContent = (props: MDXContentProps) => any;
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const TypedContent = Content as MDXContent;
+---
+
+<article class="markdown-content">
+    <TypedContent components={{ pre: CodeBlock }} />
+</article>
+<script>
+    const t = document.querySelector(".copy");
+    console.log(t);
+</script>
