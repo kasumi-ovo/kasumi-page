@@ -2,6 +2,12 @@
 import Header from "@/components/Header.astro";
 import "@/styles/global.css";
 import "@/styles/markdown-styles.css";
+
+type Props = {
+	title?: string;
+};
+
+const { title } = Astro.props;
 ---
 
 <!doctype html>
@@ -9,7 +15,7 @@ import "@/styles/markdown-styles.css";
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="description" content="A personal page of kasumi.">
+		<meta name="description" content="A personal page of kasumi." />
 		<link rel="icon" type="image/svg+xml" href="/favicon.jpg" />
 		<link
 			rel="preload"
@@ -26,8 +32,7 @@ import "@/styles/markdown-styles.css";
 			crossorigin="anonymous"
 		/>
 		<meta name="generator" content={Astro.generator} />
-		<title>夏霞</title>
-		<style></style>
+		<title>{title ? title : "夏霞"}</title>
 	</head>
 	<body>
 		<Header />
@@ -36,7 +41,9 @@ import "@/styles/markdown-styles.css";
 				<slot />
 			</main>
 			<footer>
-				<div class="text-gray-500">&copy; All Rights reserved by Kasumi-orz</div>
+				<div class="text-gray-500">
+					&copy; All Rights reserved by Kasumi-orz
+				</div>
 			</footer>
 		</div>
 	</body>

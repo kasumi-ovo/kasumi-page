@@ -15,8 +15,8 @@ export const getStaticPaths = (async () => {
 const { post } = Astro.props;
 ---
 
-<BaseLayout>
-    <section class="markdown-content">
+<BaseLayout title={post.data.title}>
+    <section class="markdown-content mt-10">
         <h1>{post.data.title}</h1>
         <div class="flex gap-4">
             <div class="flex gap-1 items-center">
