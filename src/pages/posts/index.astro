@@ -1,126 +1,79 @@
 ---
+import { tags } from "@/const";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-const tags = [
-    "React",
-    "Vue",
-    "Nextjs",
-    "Nuxtjs",
-    "ReactNative",
-    "Flutter",
-    "Nestjs",
-    "Spring Boot",
-];
+import { getCollection } from "astro:content";
+import formatDate from "@/utils/formatDate";
+export const prerender = false;
+const posts = await getCollection("posts");
+
+const tag = Astro.url.searchParams.get("tag") as (typeof tags)[number];
+const search = Astro.url.searchParams.get("search") as (typeof tags)[number];
+let tarPosts = posts;
+if (tag) {
+    tarPosts = tarPosts.filter((post) => {
+        return post.data.tags.map((tag) => tag.toLowerCase()).includes(tag);
+    });
+}
+if (search) {
+    tarPosts = tarPosts.filter((post) => {
+        return (
+            post.data.title.includes(search) || post.data.desc.includes(search)
+        );
+    });
+}
+
+const count = tarPosts.length;
 ---
 
 <BaseLayout>
-    <section class="mt-10">
-        <span class="text-xl font-bold">Tags:</span>
-        <div class="flex flex-wrap gap-3 mt-4">
+    <section class="mt-10 flex items-center gap-3">
+        <span class="text-[16px] font-bold">Tags:</span>
+        <div class="flex flex-wrap gap-3 text-[16px] tags">
+            <a href={`/posts`} class="hover:underline hover:text-theme">
+                All
+            </a>
             {
                 tags.map((tag) => (
-                    <a href="/posts" class="hover:underline hover:text-theme">
+                    <span class="tag hover:underline hover:text-theme cursor-pointer">
                         #{tag}
-                    </a>
+                    </span>
                 ))
             }
         </div>
     </section>
     <section class="mt-4">
         <div class="flex">
-            <input class="search-input" />
+            <input class="search-input" placeholder="search by keywords" />
         </div>
     </section>
     <section class="mt-8">
+        <span class="font-bold text-[13px]">Total: {count}</span>
+    </section>
+    <section class="mt-4">
         <ul class="flex flex-col gap-6">
-            <li>
-                <article>
-                    <span class="font-bold text-lg">React Tutorial</span>
-                    <p class="text-sm">This is the description of this article...</p>
-                    <div class="flex items-center gap-2 mt-2">
-                        <span class="icon-[ri--calendar-schedule-line]"></span>
-                        <span class="text-sm">Januray, 14, 2025</span>
-                    </div>
-                </article>
-            </li>
-            <li>
-                <article>
-                    <span class="font-bold text-lg">React Tutorial</span>
-                    <p class="text-sm">This is the description of this article...</p>
-                    <div class="flex items-center gap-2 mt-2">
-                        <span class="icon-[ri--calendar-schedule-line]"></span>
-                        <span class="text-sm">Januray, 14, 2025</span>
-                    </div>
-                </article>
-            </li>
-             <li>
-                <article>
-                    <span class="font-bold text-lg">React Tutorial</span>
-                    <p class="text-sm">This is the description of this article...</p>
-                    <div class="flex items-center gap-2 mt-2">
-                        <span class="icon-[ri--calendar-schedule-line]"></span>
-                        <span class="text-sm">Januray, 14, 2025</span>
-                    </div>
-                </article>
-            </li>
-              <li>
-                <article>
-                    <span class="font-bold text-lg">React Tutorial</span>
-                    <p class="text-sm">This is the description of this article...</p>
-                    <div class="flex items-center gap-2 mt-2">
-                        <span class="icon-[ri--calendar-schedule-line]"></span>
-                        <span class="text-sm">Januray, 14, 2025</span>
-                    </div>
-                </article>
-            </li>
-              <li>
-                <article>
-                    <span class="font-bold text-lg">React Tutorial</span>
-                    <p class="text-sm">This is the description of this article...</p>
-                    <div class="flex items-center gap-2 mt-2">
-                        <span class="icon-[ri--calendar-schedule-line]"></span>
-                        <span class="text-sm">Januray, 14, 2025</span>
-                    </div>
-                </article>
-            </li>
-              <li>
-                <article>
-                    <span class="font-bold text-lg">React Tutorial</span>
-                    <p class="text-sm">This is the description of this article...</p>
-                    <div class="flex items-center gap-2 mt-2">
-                        <span class="icon-[ri--calendar-schedule-line]"></span>
-                        <span class="text-sm">Januray, 14, 2025</span>
-                    </div>
-                </article>
-            </li>
-              <li>
-                <article>
-                    <span class="font-bold text-lg">React Tutorial</span>
-                    <p class="text-sm">This is the description of this article...</p>
-                    <div class="flex items-center gap-2 mt-2">
-                        <span class="icon-[ri--calendar-schedule-line]"></span>
-                        <span class="text-sm">Januray, 14, 2025</span>
-                    </div>
-                </article>
-            </li>
-              <li>
-                <article>
-                    <span class="font-bold text-lg">React Tutorial</span>
-                    <p class="text-sm">This is the description of this article...</p>
-                    <div class="flex items-center gap-2 mt-2">
-                        <span class="icon-[ri--calendar-schedule-line]"></span>
-                        <span class="text-sm">Januray, 14, 2025</span>
-                    </div>
-                </article>
-            </li>
+            {
+                tarPosts.map((post) => (
+                    <li>
+                        <article class="max-w-xl">
+                            <a
+                                class="font-bold text-[16px] hover:text-theme"
+                                href={`/posts/${post.id}`}
+                            >
+                                {post.data.title}
+                            </a>
+                            <p class="text-[13px] mt-2">{post.data.desc}</p>
+                            <div class="flex items-center gap-2 mt-2 ">
+                                <span class="icon-[ri--calendar-schedule-line] text-[14px]" />
+                                <span class="text-[13px]">
+                                    {formatDate(post.data.pubDate)}
+                                </span>
+                            </div>
+                        </article>
+                    </li>
+                ))
+            }
         </ul>
     </section>
-    <div class="flex justify-end gap-3 mt-4">
-        <a href="#">Prev</a>
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">Next</a>
-    </div>
 </BaseLayout>
 <style>
     @reference "@/styles/global.css";
@@ -128,3 +81,26 @@ const tags = [
         @apply outline-0 border border-gray-400 rounded-md h-8 w-60 px-2 py-1 text-sm focus:shadow-md shadow-theme transition-all duration-150;
     }
 </style>
+<script>
+    const search = document.querySelector<HTMLInputElement>(".search-input");
+    const tags = document.querySelector<HTMLDivElement>(".tags");
+    tags?.addEventListener("click", (ev: MouseEvent) => {
+        const target = ev.target as HTMLDivElement | HTMLSpanElement;
+        if (target.classList.contains("tag")) {
+            const v = target.innerText.slice(1).toLowerCase();
+            const params = new URLSearchParams(window.location.search);
+            params.set("tag", v);
+            const newUrl = `${window.location.pathname}?${params.toString()}`;
+            window.location.href = newUrl;
+        }
+    });
+    search?.addEventListener("keyup", (ev: KeyboardEvent) => {
+        if (ev.key === "Enter") {
+            const target = ev.target as HTMLInputElement;
+            const params = new URLSearchParams(window.location.search);
+            params.set("search", target.value);
+            const newUrl = `${window.location.pathname}?${params.toString()}`;
+            window.location.href = newUrl;
+        }
+    });
+</script>
